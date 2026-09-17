@@ -1,22 +1,30 @@
 export default class Character {
   constructor(type) {
     this.type = type;
-    this.stoned = false;
+    this._stoned = false;
     this.distance = 1;
     this._attack = 100;
   }
 
-    get attack() {
+  get attack() {
     const distanceAttack = this._attack * (1 - (this.distance - 1) * 0.1);
 
     if (this.stoned) {
-        return distanceAttack - Math.log2(this.distance) * 5;
+      return distanceAttack - Math.log2(this.distance) * 5;
     }
 
     return distanceAttack;
-    }
+  }
 
   set attack(value) {
     this._attack = value;
+  }
+
+  get stoned() {
+    return this._stoned;
+  }
+
+  set stoned(value) {
+    this._stoned = value;
   }
 }
